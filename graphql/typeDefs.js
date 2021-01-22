@@ -1,21 +1,24 @@
-import { gql } from 'apollo-server'
+const { gql } = require('apollo-server')
 
 module.exports = gql`
     type User {
         id: ID!,
         email: String!
-        token: String!
+        # token: String!
         username: String!
-        createAt: String!
+        createdAt: String!
     }
-    input ReqisterInput {
+    type Query {
+        getUsers: [User]
+    }
+    input RegisterInput {
         username: String!
         password: String!
         confirmPassword: String!
         email: String!
     }
     type Mutation {
-        register(registerInput: ReqisterInput): User!
-        login(username: String!, password: String!): User!
+        register(registerInput: RegisterInput): User!
+        # login(username: String!, password: String!): User!
     }
 `
